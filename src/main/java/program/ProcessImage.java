@@ -67,7 +67,7 @@ public class ProcessImage {
     @FunctionName("ProcessImage")
     @StorageAccount("DefaultEndpointsProtocol=https;AccountName=fastlaneblobs;AccountKey=CeGaoYc/cwpcf44WQpgEP61ERm8cQGwe364M1zaPimeUEOGNVCXZktPmYUBfq9zl5YIFBQz0bB6/Sz/cD2OvJA==;EndpointSuffix=core.windows.net")
     public void run(
-        @BlobTrigger(name = "content", path = "kvish6-pending-validation/{name}/{name}", dataType = "binary") byte[] content,
+        @BlobTrigger(name = "content", path = "kvish6-pending-validation/{name}", dataType = "binary", connection ="DefaultEndpointsProtocol=https;AccountName=fastlaneblobs;AccountKey=CeGaoYc/cwpcf44WQpgEP61ERm8cQGwe364M1zaPimeUEOGNVCXZktPmYUBfq9zl5YIFBQz0bB6/Sz/cD2OvJA==;EndpointSuffix=core.windows.net") byte[] content,
         @BindingName("name") String name,
         final ExecutionContext context
     )
