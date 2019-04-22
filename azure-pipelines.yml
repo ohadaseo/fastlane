@@ -10,6 +10,7 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
+- script: sudo apt-get install azure-functions-core-tools
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
