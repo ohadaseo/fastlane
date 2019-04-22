@@ -23,3 +23,24 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
+    # Copy files    
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**/azure-functions/**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+# Create Archive : zip file
+- task: ArchiveFiles@2
+  displayName: 'Archive $(build.artifactstagingdirectory)/target/azure-functions/java-functions-azure-pipelines'
+  inputs:
+    rootFolderOrFile: '$(build.artifactstagingdirectory)/target/azure-functions/java-functions-azure-pipelines'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)/$(Build.BuildId).zip'
+
