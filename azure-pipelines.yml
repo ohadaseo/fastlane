@@ -22,19 +22,4 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-# Copy files    
-- task: CopyFiles@2
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
-  inputs:
-    SourceFolder: '$(system.defaultworkingdirectory)'
-    Contents: '**/azure-functions/**'
-    TargetFolder: '$(build.artifactstagingdirectory)'
-# Create Archive : zip file
-- task: ArchiveFiles@2
-  displayName: 'Archive $(build.artifactstagingdirectory)/target/azure-functions/$(functionAppMvnTargetFolder)'
-  inputs:
-    rootFolderOrFile: '$(build.artifactstagingdirectory)/target/azure-functions/$(functionAppMvnTargetFolder)'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
+
